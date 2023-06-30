@@ -1,4 +1,5 @@
 import graphql, { GraphQLString, GraphQLObjectType, GraphQLSchema } from 'graphql';
+import pingResolver from '@/resolvers/ping';
 
 const pingType = new GraphQLObjectType({
   name: 'Ping',
@@ -12,10 +13,8 @@ const RootQueryType = new GraphQLObjectType({
   fields: {
     ping: {
       type: pingType,
-      async resolve(parent, args) {
-        return await {
-          result: "Okay"
-        }
+      resolve(parent, args) {
+        return pingResolver();
       }
     }
   }

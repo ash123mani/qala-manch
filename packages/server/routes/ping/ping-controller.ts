@@ -1,10 +1,10 @@
 import { FastifyRequest, FastifyReply } from 'fastify';
+import pingResolver from '@/resolvers/ping';
 
 class PingController {
   ping (request: FastifyRequest, reply: FastifyReply) {
-    reply.send({
-      result: 'pong'
-    });
+    const data = pingResolver();
+    reply.send(data);
   }
 }
 

@@ -10,7 +10,6 @@ class ApiServer {
   fastifyBuilder: any;
   fastify: FastifyInstance;
 
-
   constructor() {
     if (process.env.NODE_ENV !== 'production') {
       dotenv.config({ path: '../../.env' });
