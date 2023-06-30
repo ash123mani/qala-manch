@@ -1,0 +1,16 @@
+{
+  "name": "qala-manch",
+  "version": "1.0.0",
+  "description": "Qala Manch",
+  "main": "index.js",
+  "license": "MIT",
+  "private": true,
+  "workspaces": ["packages/*"],
+  "scripts": {
+    "dev": "lerna run --parallel dev"
+  },
+  "devDependencies": {
+    "lerna": "^7.1.1",
+    "typescript": "^5.1.5"
+  }
+}
