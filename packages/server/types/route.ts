@@ -1,3 +1,3 @@
 import { RouteOptions } from 'fastify';
 
-export interface Route extends RouteOptions {}
+export type Route = RouteOptions;

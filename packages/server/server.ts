@@ -1,8 +1,9 @@
 import { FastifyInstance } from 'fastify';
-import dotenv from 'dotenv';
 import consola from 'consola';
 import os from 'os';
 import process from 'process';
+
+import '@/utils/load-env';
 
 import { buildApi  } from './api';
 
@@ -10,15 +11,11 @@ class ApiServer {
   fastifyBuilder: any;
   fastify: FastifyInstance;
 
-  constructor() {
-    if (process.env.NODE_ENV !== 'production') {
-      dotenv.config({ path: '../../.env' });
-    }
-
+  constructor () {
     this.fastifyBuilder = buildApi;
   }
 
-  async up(
+  async up (
     port: string | number = process.env.SERVER_PORT || 3001,
     host: string  = process.env.SERVER_HOST || 'localhost'
   ):Promise<void> {
@@ -33,7 +30,7 @@ class ApiServer {
     }
   }
 
-  async down() {
+  async down () {
     await this.fastify.close();
   }
 }

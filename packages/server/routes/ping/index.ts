@@ -1,4 +1,4 @@
-import { Route } from "@/types/route";
+import { Route } from '@/types/route';
 import pingController from './ping-controller';
 import pingSchema from './ping-schema';
 
@@ -11,6 +11,6 @@ const ping: [Route] = [{
     }
   },
   handler: pingController.ping
-}]
+}];
 
-export default ping
+export default ping;

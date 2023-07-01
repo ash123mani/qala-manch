@@ -1,7 +1,7 @@
 import S from 'fluent-json-schema';
 
 const response = S.object()
-  .prop('result', S.string().required())
+  .prop('result', S.string().required());
 
 const schema = {
   ping: {
@@ -9,8 +9,6 @@ const schema = {
       200: response
     }
   }
-}
+};
 
-console.log("schema", schema)
-
-export default schema
+export default schema;

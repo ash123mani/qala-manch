@@ -1,7 +1,7 @@
 const pingResolver = function () {
   return {
-    result: "PONG"
-  }
-}
+    result: 'PONG'
+  };
+};
 
-export default pingResolver
+export default pingResolver;
