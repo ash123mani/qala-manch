@@ -1,7 +1,9 @@
+import { Size } from '@/utils/types';
+
 export interface InputProps {
   className?: string;
   type: Type;
-  size: Size | "medium";
+  size: Size;
   placeholder: string;
   errorMessage?: string;
   disabled?: boolean | false;
@@ -9,4 +11,3 @@ export interface InputProps {
 
 export type Type = "input" | "textarea"
 
-export type Size = "large" | "medium" | "small";

@@ -1,0 +1,42 @@
+@import '@/styles/style.module';
+
+@mixin large {
+  height: 40px;
+  min-width: 90px;
+  padding: 0 8px;
+  @include typography('subtitle', 'regular');
+}
+@mixin medium {
+  height: 36px;
+  min-width: 82px;
+  padding: 0 8px;
+  @include typography('body', 'regular');
+}
+@mixin small {
+  height: 24px;
+  min-width: 54px;
+  padding: 0 4px;
+  @include typography('caption', 'regular');
+}
+
+.button {
+  background-color: $primary-600;
+  color: $white;
+
+
+  &--primary {
+    background-color: $primary-600;
+    color: $white;
+    border-radius: $border-radius;
+
+    &--large {
+      @include large;
+    }
+    &--medium {
+      @include medium;
+    }
+    &--small {
+      @include small;
+    }
+  }
+}
