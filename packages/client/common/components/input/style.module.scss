@@ -1,0 +1,62 @@
+@import '@/common/styles/style.module';
+
+.input-wrapper {
+  .input {
+    border-radius: $border-radius;
+    border: 1px solid $neutral-300;
+    color: $neutral-600;
+
+    &::placeholder {
+      color: $neutral-400;
+    }
+    &:hover {
+      border-color: $primary-500;
+    }
+    &:focus {
+      outline: none;
+      border-color: $primary-600;
+    }
+    &:disabled {
+      border-color: $neutral-200;
+      &::placeholder {
+        color: $neutral-400;
+      }
+    }
+
+    &--large {
+      height: 40px;
+      padding: 0 12px;
+      @include typography('subtitle', 'regular');
+    }
+    &--medium {
+      height: 36px;
+      padding: 0 12px;
+      @include typography('body', 'regular');
+    }
+    &--small {
+      height: 24px;
+      padding: 0 8px;
+      @include typography('caption', 'regular');
+    }
+
+    &--error {
+      border-color: $danger-600;
+    }
+  };
+
+  .error-message {
+    margin-top: 4px;
+    color: $danger-600;
+
+    &--large {
+      @include typography('body', 'regular');
+    }
+    &--medium {
+      @include typography('body', 'regular');
+    }
+    &--small {
+      @include typography('caption', 'regular');
+    }
+  }
+}
+
