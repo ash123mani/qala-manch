@@ -7,6 +7,7 @@ export interface BtnProps {
   className?: string;
   children: ReactNode;
   variant?: string;
+  disabled?: boolean;
 }
 
 export type Type = 'button' | 'submit' | 'reset';

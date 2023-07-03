@@ -23,11 +23,51 @@
   background-color: $primary-600;
   color: $white;
 
-
   &--primary {
     background-color: $primary-600;
     color: $white;
     border-radius: $border-radius;
+
+    &:hover {
+      background-color: $primary-500;
+    }
+    &:disabled {
+      background-color: $primary-200;
+    }
+    &:active {
+      background-color: $primary-700;
+    }
+
+    &--large {
+      @include large;
+    }
+    &--medium {
+      @include medium;
+    }
+    &--small {
+      @include small;
+    }
+  }
+
+  &--outline {
+    background-color: transparent;
+    color: $neutral-600;
+    border: 1px solid $neutral-300;
+    border-radius: $border-radius;
+
+    &:hover {
+      border-color: $primary-400;
+      color: $primary-400;
+    }
+    &:disabled {
+      border-color: $neutral-400;
+      color: $neutral-400;
+      background-color: $neutral-50;
+    }
+    &:active {
+      border-color: $primary-600;
+      color: $primary-600;
+    }
 
     &--large {
       @include large;

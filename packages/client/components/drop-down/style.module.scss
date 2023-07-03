@@ -1,0 +1,86 @@
+@import '@/styles/style.module';
+
+.drop-down {
+  padding: 2px 4px;
+  border: 1px solid $neutral-300;
+  width: 400px;
+  position: relative;
+
+  &--large {
+    height: 40px;
+  }
+  &--medium {
+    height: 36px;
+  }
+  &--small {
+    height: 24px;
+  }
+
+  &__select {
+    color: $neutral-600;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    height: 100%;
+
+    &:hover {
+      background-color: $primary-200;
+      border-radius: $border-radius;
+    }
+
+    &--large {
+      padding: 0 18px;
+      @include typography('subtitle', 'regular');
+    }
+    &--medium {
+      padding: 0 16px;
+      @include typography('body', 'regular');
+    }
+    &--small {
+      padding: 0 14px;
+      @include typography('caption', 'regular');
+    }
+  }
+
+  &__options {
+    position: absolute;
+    left: 0;
+    width: 100%;
+    filter: $elevation-3;
+    background-color: $white;
+    margin-top: 8px;
+    max-height: 400px;
+    overflow: auto;
+  }
+
+  &__option {
+    color: $neutral-600;
+    padding: 12px 8px;
+    margin: 12px;
+
+    &:hover {
+      color: $neutral-600;
+      background-color: $neutral-50;
+      border-radius: $border-radius;
+    }
+    &:active {
+      color: $primary-600;
+      background-color: $primary-50;
+    }
+
+    &--selected {
+      color: $primary-600;
+      background-color: $primary-100;
+    }
+  }
+
+
+  &__name-pills {
+    @include text-ellipsis;
+  }
+
+  &__name-pill {
+    margin-right: 8px;
+  }
+}
