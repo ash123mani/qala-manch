@@ -1,10 +1,18 @@
-import { GraphQLString, GraphQLObjectType, GraphQLSchema } from 'graphql';
+import { GraphQLString, GraphQLObjectType, GraphQLSchema, GraphQLNonNull } from 'graphql';
 import pingResolver from '@/resolvers/ping';
+import * as userResolver from '@/resolvers/user';
 
 const pingType = new GraphQLObjectType({
   name: 'Ping',
   fields: () => ({
     result: { type: GraphQLString }
+  })
+});
+
+const userType = new GraphQLObjectType({
+  name: 'User',
+  fields: () => ({
+    userName: { type: GraphQLString }
   })
 });
 
@@ -20,6 +28,23 @@ const RootQueryType = new GraphQLObjectType({
   }
 });
 
+const Mutations = new GraphQLObjectType({
+  name: 'Mutations',
+  fields: {
+    createUser: {
+      type: userType,
+      args: {
+        userName: { type: new GraphQLNonNull(GraphQLString)}
+      },
+      async resolve (parent, args) {
+        const res = await userResolver.createUser(args);
+        return res;
+      }
+    }
+  }
+});
+
 export default new GraphQLSchema({
-  query: RootQueryType
+  query: RootQueryType,
+  mutation: Mutations
 });

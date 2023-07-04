@@ -6,7 +6,7 @@ import { InputProps } from './types';
 
 console.log('inputClasseNames', inputClasseNames)
 
-const Input = ({ className, type, size, placeholder, errorMessage, disabled }: InputProps): JSX.Element => {
+const Input = ({ className, type = 'input', size = 'large', placeholder, errorMessage, disabled, onChange }: InputProps): JSX.Element => {
   const blkClassName = clsx(
     className,
     inputClasseNames['input-wrapper'],
@@ -25,7 +25,7 @@ const Input = ({ className, type, size, placeholder, errorMessage, disabled }: I
 
   return (
     <div className={blkClassName}>
-      <input className={inputBoxClassName} type={type } placeholder={placeholder} disabled={disabled} />
+      <input className={inputBoxClassName} type={type } placeholder={placeholder} disabled={disabled} onChange={onChange}/>
       {errorMessage && <div className={errorBoxClassName}>{errorMessage}</div>}
     </div>
   )

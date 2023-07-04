@@ -12,7 +12,8 @@ const DropDown: FC<DropDownProps> = ({
   multiSelect = false,
   idKey = "id",
   nameKey = "name",
-  options
+  options,
+  onOptionChange
 }) => {
   const [showOptions, setShowOptions] = useState<boolean>(false);
   const [selected, setSelected] = useState<ListItem[]>(defaultSelected);
@@ -48,10 +49,18 @@ const DropDown: FC<DropDownProps> = ({
         const newKeys = isOptionAlreadySelected(option)
           ? prevKeys.filter((selection) => selection[idKey] !== option[idKey])
           : [...selected, option];
+        onOptionChange({
+          currentSelectedOption: option,
+          allSelectedOption: newKeys
+        });
         return newKeys;
       });
     } else {
       setSelected([option]);
+      onOptionChange({
+        currentSelectedOption: option,
+        allSelectedOption: [option]
+      });
     }
   };
 

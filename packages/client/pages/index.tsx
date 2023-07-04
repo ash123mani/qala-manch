@@ -14,6 +14,7 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
       <main className={`${styles.main} ${inter.className}`}>
+        <Input size="small"placeholder="User Name" onChange={() => {}}/>
         <DropDown
           options={[
             { name: "Mango", id: "mango" },
@@ -25,6 +26,7 @@ export default function Home() {
             { name: "Aam is raza", id: "aam" },
             { name: "Gajar is Carrot", id: "carrot" },
           ]}
+          onOptionChange={() => {}}
         />
       </main>
     </>

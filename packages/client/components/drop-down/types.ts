@@ -9,8 +9,14 @@ export interface DropDownProps {
   idKey?: string;
   nameKey?: string;
   options: ListItem[];
+  onOptionChange: ({}:CbOptionChange) => void;
 }
 
 export interface ListItem {
   [name: string]: string;
+}
+
+export interface CbOptionChange {
+  currentSelectedOption: ListItem,
+  allSelectedOption: ListItem[]
 }

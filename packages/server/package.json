@@ -11,6 +11,8 @@
     "lint-and-fix": "eslint . --ext .ts --fix"
   },
   "dependencies": {
+    "@fastify/swagger": "^8.6.0",
+    "@fastify/swagger-ui": "^1.9.2",
     "@types/mongoose": "^5.11.97",
     "consola": "^3.2.2",
     "fastify": "^4.18.0",
