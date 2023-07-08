@@ -1,0 +1,12 @@
+@import '@/styles/style.module';
+
+.layout-logo {
+  padding: 24px 120px;
+  @include typography('h2', 'bold');
+  border-bottom: 1px solid $neutral-400;
+}
+
+.link {
+  color: $primary-700;
+  @include typography('h2', 'bold');
+}

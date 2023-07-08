@@ -1,11 +1,41 @@
 import Head from "next/head";
-import { Labrada } from "next/font/google";
-import styles from "@/styles/Home.module.css";
-import { Input, Button, DropDown } from "@/components";
+import styles from "@/styles/home.module.scss";
+import { Input, Button, DropDown } from "@/app-components";
+import React, { useState, useEffect } from "react";
+import { gql } from "@apollo/client/core";
+import gqlClient from "@/gql-client";
 
-const inter = Labrada({ subsets: ["latin"] });
+type UserPayload = {
+  userName: string;
+};
+
+const CREATE_USER = gql`
+  mutation createUser($userName: String!) {
+    createUser(userName: $userName) {
+      userName
+    }
+  }
+`;
 
 export default function Home() {
+  const [userName, setUserName] = useState("");
+
+  const handleUserNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { value } = e.target;
+    setUserName(value);
+  };
+
+  const handleUserNameSubmit: React.FormEventHandler<HTMLFormElement> = async (e) => {
+    e.preventDefault();
+
+    const resp = await gqlClient.mutate<UserPayload, UserPayload>(
+      "createUser",
+      CREATE_USER,
+      { userName }
+    );
+    console.log("resp", resp)
+  };
+
   return (
     <>
       <Head>
@@ -13,21 +43,18 @@ export default function Home() {
         <meta name="description" content="Know the Artists around you" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
-      <main className={`${styles.main} ${inter.className}`}>
-        <Input size="small"placeholder="User Name" onChange={() => {}}/>
-        <DropDown
-          options={[
-            { name: "Mango", id: "mango" },
-            { name: "Banana", id: "banana" },
-            { name: "Kiwi", id: "kiwi" },
-            { name: "Apple is", id: "Apple" },
-            { name: "Lichi is Lichi", id: "Lichi" },
-            { name: "Angoor is Grape", id: "angoor" },
-            { name: "Aam is raza", id: "aam" },
-            { name: "Gajar is Carrot", id: "carrot" },
-          ]}
-          onOptionChange={() => {}}
-        />
+      <main className={`${styles.home}`}>
+        <form className={styles["home__form"]} onSubmit={handleUserNameSubmit}>
+          <Input
+            size="large"
+            placeholder="Enter your username"
+            onChange={handleUserNameChange}
+            className={styles["home__input"]}
+          />
+          <Button type="submit" className={styles["home__submit"]}>
+            Submit
+          </Button>
+        </form>
       </main>
     </>
   );

@@ -3,8 +3,9 @@
 .input-wrapper {
   .input {
     border-radius: $border-radius;
-    border: 1px solid $neutral-300;
+    border: 1px solid $neutral-400;
     color: $neutral-600;
+    width: inherit;
 
     &::placeholder {
       color: $neutral-400;

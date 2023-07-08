@@ -7,7 +7,7 @@ export interface InputProps {
   placeholder: string;
   errorMessage?: string;
   disabled?: boolean | false;
-  onChange: (e: React.SyntheticEvent) => void;
+  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
 export type Type = "input" | "textarea"

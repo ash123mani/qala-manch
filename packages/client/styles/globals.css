@@ -33,6 +33,15 @@ textarea, input:focus {
   touch-action: manipulation;
 }
 
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+a:active {
+  all: unset;
+}
+
 @media (prefers-color-scheme: dark) {
   :root {
     --foreground-rgb: 255, 255, 255;

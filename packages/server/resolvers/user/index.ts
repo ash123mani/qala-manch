@@ -5,7 +5,7 @@ export const createUser = async (payload: any): Promise<{ userName?: string; new
     const user = await User.findOne({ userName });
 
     if (!user) {
-      const user = await User.create({ userName });
+      const user = await User.create({ userName  });
       return {
         userName: user.userName,
         newUser: true

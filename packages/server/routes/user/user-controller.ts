@@ -7,10 +7,10 @@ class UserController {
       const payload = request.body;
       const res = await createUser(payload);
       reply.send(res);
-    } catch(error) {
+    } catch(error: any) {
       reply.send({
         success: false,
-        error
+        error: error.errors
       });
     }
   }

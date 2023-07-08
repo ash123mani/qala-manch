@@ -2,10 +2,12 @@ import Fastify, { FastifyInstance } from 'fastify';
 import mercurius from 'mercurius';
 import fastifySwagger from '@fastify/swagger';
 import fastifySwaggerUi from '@fastify/swagger-ui';
+import cors from '@fastify/cors';
 
 import routes from './routes';
 import schema from './schema';
 import mongoosePlugin from '@/plugins/mongoose';
+import corsPluginOptions from '@/plugins/cors';
 import { swaggerOptions } from '@/plugins/swagger';
 import dbConfig from '@/config/db';
 import '@/utils/load-env';
@@ -20,6 +22,7 @@ export const buildApi = async function (): Promise<FastifyInstance> {
     graphiql: true
   })
   .register(mongoosePlugin, dbConfig)
+  .register(cors, corsPluginOptions)
   .register(fastifySwagger, swaggerOptions)
   .register(fastifySwaggerUi, swaggerOptions);
 

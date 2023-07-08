@@ -8,6 +8,8 @@ export interface BtnProps {
   children: ReactNode;
   variant?: string;
   disabled?: boolean;
+  onSubmit?: React.FormEventHandler<HTMLButtonElement>;
+  onClick?: React.MouseEventHandler<HTMLButtonElement>;
 }
 
 export type Type = 'button' | 'submit' | 'reset';

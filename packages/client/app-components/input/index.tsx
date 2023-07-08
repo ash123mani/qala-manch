@@ -4,8 +4,6 @@ import clsx from 'clsx';
 import inputClasseNames from './style.module.scss'
 import { InputProps } from './types';
 
-console.log('inputClasseNames', inputClasseNames)
-
 const Input = ({ className, type = 'input', size = 'large', placeholder, errorMessage, disabled, onChange }: InputProps): JSX.Element => {
   const blkClassName = clsx(
     className,
