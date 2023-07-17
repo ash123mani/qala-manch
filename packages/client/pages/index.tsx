@@ -1,9 +1,10 @@
 import Head from "next/head";
 import styles from "@/styles/home.module.scss";
-import {Input, Button, DropDown} from "@/app-components";
-import React, {useState, useEffect} from "react";
-import {gql} from "@apollo/client/core";
-import gqlClient from "@/gql-client";
+import { Input, Button } from "@/app-components";
+import React, { useState, useEffect } from "react";
+import { gql } from "@apollo/client/core";
+import { useAppDispatch } from "@/store";
+import { createUser } from "@/store/slices/user/create-user";
 
 type UserPayload = {
   userName: string;
@@ -18,17 +19,18 @@ const CREATE_USER = gql`
 `;
 
 export default function Home() {
+  const dispatch = useAppDispatch();
   const [userName, setUserName] = useState("");
 
   const handleUserNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const {value} = e.target;
+    const { value } = e.target;
     setUserName(value);
   };
 
   const handleUserNameSubmit: React.FormEventHandler<HTMLFormElement> = async (e) => {
     e.preventDefault();
+    const resp = await dispatch(createUser({ userName }));
 
-    const resp = await gqlClient.mutate<UserPayload, UserPayload>("createUser", CREATE_USER, {userName});
     console.log("resp", resp);
   };
 

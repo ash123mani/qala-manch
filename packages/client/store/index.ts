@@ -1,22 +1,12 @@
 import { configureStore, ThunkAction } from "@reduxjs/toolkit";
 import { Action } from "redux";
 import { useDispatch, TypedUseSelectorHook, useSelector } from 'react-redux';
-import gqlClient from "@/gql-client";
 import { createWrapper } from "next-redux-wrapper";
-import subjectSlice from "./reducer";
+import rootReducer from "./reducer";
 
 const makeStore = () =>
   configureStore({
-    reducer: {
-      [subjectSlice.name]: subjectSlice.reducer,
-    },
-    middleware: (getDefaultMiddleware) => {
-      return getDefaultMiddleware({
-        thunk: {
-          extraArgument: gqlClient
-        }
-      });
-    },
+    reducer: rootReducer,
     devTools: process.env.NODE_ENV !== "production",
   });
 

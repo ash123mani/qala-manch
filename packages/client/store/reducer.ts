@@ -1,30 +1,15 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { HYDRATE } from 'next-redux-wrapper';
+import userSlice from './slices/user';
 
-interface SubjectState {
-  name: string;
-  value: number;
-}
-
-const initialState: SubjectState = {
-  name: 'test',
-  value: 0
-}
-
-export const subjectSlice = createSlice({
+export const hydrationSlice = createSlice({
   name: 'subject',
-
-  initialState,
- 
+  initialState: {} as any, 
   reducers: {
     setEnt(_state, action) {
       return action.payload;
     },
-    incrementByAmount: (state, action: PayloadAction<number>) => {
-      state.value += action.payload
-    },
   },
-
   extraReducers: {
     [HYDRATE]: (state, action) => {
       console.log('HYDRATE', state, action.payload);
@@ -36,6 +21,10 @@ export const subjectSlice = createSlice({
   },
 });
 
-const { actions, reducer } = subjectSlice;
 
-export default subjectSlice
+export const rootReducer = {
+  [hydrationSlice.name]: hydrationSlice.reducer,
+  [userSlice.name]: userSlice.reducer
+}
+
+export default rootReducer
