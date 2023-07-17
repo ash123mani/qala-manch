@@ -1,4 +1,4 @@
-import { Route } from '@/types/route';
+import { Route } from '@/types';
 import userController from './user-controller';
 
 const user: Route[] = [{

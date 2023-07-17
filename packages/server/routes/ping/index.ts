@@ -1,4 +1,4 @@
-import { Route } from '@/types/route';
+import { Route } from '@/types';
 import pingController from './ping-controller';
 import pingSchema from './ping-schema';
 

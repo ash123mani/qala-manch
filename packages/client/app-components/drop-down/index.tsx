@@ -1,7 +1,7 @@
-import React, { useState, MouseEvent, FC, SetStateAction } from "react";
+import React, {useState, MouseEvent, FC, SetStateAction} from "react";
 import clsx from "clsx";
 
-import { DropDownProps, ListItem } from "./types";
+import {DropDownProps, ListItem} from "./types";
 import dropDownClassNames from "./style.module.scss";
 
 const DropDown: FC<DropDownProps> = ({
@@ -13,7 +13,7 @@ const DropDown: FC<DropDownProps> = ({
   idKey = "id",
   nameKey = "name",
   options,
-  onOptionChange
+  onOptionChange,
 }) => {
   const [showOptions, setShowOptions] = useState<boolean>(false);
   const [selected, setSelected] = useState<ListItem[]>(defaultSelected);
@@ -40,10 +40,7 @@ const DropDown: FC<DropDownProps> = ({
     return index !== -1;
   };
 
-  const handleOptionSelect = (
-    e: MouseEvent<HTMLDivElement, globalThis.MouseEvent>,
-    option: ListItem
-  ) => {
+  const handleOptionSelect = (e: MouseEvent<HTMLDivElement, globalThis.MouseEvent>, option: ListItem) => {
     if (multiSelect) {
       setSelected((prevKeys: ListItem[]): ListItem[] => {
         const newKeys = isOptionAlreadySelected(option)
@@ -51,7 +48,7 @@ const DropDown: FC<DropDownProps> = ({
           : [...selected, option];
         onOptionChange({
           currentSelectedOption: option,
-          allSelectedOption: newKeys
+          allSelectedOption: newKeys,
         });
         return newKeys;
       });
@@ -59,7 +56,7 @@ const DropDown: FC<DropDownProps> = ({
       setSelected([option]);
       onOptionChange({
         currentSelectedOption: option,
-        allSelectedOption: [option]
+        allSelectedOption: [option],
       });
     }
   };
@@ -68,11 +65,11 @@ const DropDown: FC<DropDownProps> = ({
     return (
       <div className={dropDownClassNames[`drop-down__name-pills`]}>
         {selected.map((selection) => {
-          return <span className={dropDownClassNames[`drop-down__name-pill`]}>{selection[nameKey]}</span>
+          return <span className={dropDownClassNames[`drop-down__name-pill`]}>{selection[nameKey]}</span>;
         })}
       </div>
-    )
-  }
+    );
+  };
 
   return (
     <div className={dropDownClassName}>
@@ -90,8 +87,7 @@ const DropDown: FC<DropDownProps> = ({
                   key={option[idKey]}
                   className={clsx(
                     dropDownClassNames["drop-down__option"],
-                    isSelected &&
-                      dropDownClassNames[`drop-down__option--selected`]
+                    isSelected && dropDownClassNames[`drop-down__option--selected`]
                   )}
                   onClick={(e) => handleOptionSelect(e, option)}
                 >

@@ -12,7 +12,8 @@ const pingType = new GraphQLObjectType({
 const userType = new GraphQLObjectType({
   name: 'User',
   fields: () => ({
-    userName: { type: GraphQLString }
+    userName: { type: GraphQLString },
+    name: { type: GraphQLString },
   })
 });
 
@@ -34,7 +35,8 @@ const Mutations = new GraphQLObjectType({
     createUser: {
       type: userType,
       args: {
-        userName: { type: new GraphQLNonNull(GraphQLString)}
+        userName: { type: new GraphQLNonNull(GraphQLString)},
+        name: { type: new GraphQLNonNull(GraphQLString)},
       },
       async resolve (parent, args) {
         const res = await userResolver.createUser(args);
