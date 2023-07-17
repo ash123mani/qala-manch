@@ -2,11 +2,11 @@ import { Size } from '@/utils/types';
 import { ReactNode } from "react";
 
 export interface BtnProps {
-  size?: Size | 'medium';
+  size?: Size;
   type?: Type;
   className?: string;
   children: ReactNode;
-  variant?: string;
+  variant?: Variant;
   disabled?: boolean;
   onSubmit?: React.FormEventHandler<HTMLButtonElement>;
   onClick?: React.MouseEventHandler<HTMLButtonElement>;

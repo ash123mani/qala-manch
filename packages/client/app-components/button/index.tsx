@@ -6,7 +6,7 @@ import btnClassNames from "./style.module.scss";
 
 const Button = ({
   children,
-  size = "large",
+  size = "medium",
   type = "button",
   className,
   variant = "primary",
@@ -33,4 +33,5 @@ const Button = ({
     </button>
   );
 };
+
 export default Button;
