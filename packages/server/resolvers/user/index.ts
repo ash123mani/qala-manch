@@ -1,19 +1,20 @@
 import User from '@/models/user';
+import { UserPayload,UserResponse } from '@qala-manch/types';
 
-export const createUser = async (payload: any): Promise<{ userName?: string; newUser: boolean; }> => {
+export const createUser = async (payload: UserPayload): Promise<UserResponse> => {
     const { userName } = payload;
     const user = await User.findOne({ userName });
 
     if (!user) {
-      const user = await User.create({ userName  });
+      const user = await User.create({ userName });
       return {
         userName: user.userName,
-        newUser: true
+        isNewUser: true
       };
     } {
       return {
         userName: user.userName,
-        newUser: false
+        isNewUser: false
       };
     }
 };

@@ -1,11 +1,13 @@
 {
-  "name": "qala-manch",
+  "name": "@qala-manch/mono-repo",
   "version": "1.0.0",
   "description": "Qala Manch",
   "main": "index.js",
   "license": "MIT",
   "private": true,
-  "workspaces": ["packages/*"],
+  "workspaces": {
+    "packages": ["packages/*"]
+  },
   "scripts": {
     "dev": "lerna run --parallel dev"
   },

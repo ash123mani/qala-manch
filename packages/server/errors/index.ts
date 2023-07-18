@@ -17,7 +17,7 @@ const errorHandler = (error: CustomError, request: FastifyRequest, reply: Fastif
 
   let message = '';
 
-  if (error.name === 'ValidationError') {
+  if (error.name === 'ValidationError' || error.name === 'GraphQLError') {
     Object.values(error.errors).forEach((err: ErrorObj) => {
       message += `${err.path}: ${err.message}${eol}`;
     });
