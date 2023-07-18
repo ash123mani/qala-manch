@@ -1,5 +1,6 @@
 export interface UserPayload {
   userName: string;
+  name?: string;
 }
 
 export interface UserResponse {

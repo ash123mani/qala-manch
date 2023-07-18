@@ -2,4 +2,5 @@
   "compilerOptions": {
     "baseUrl": "./packages", 
   },
+  "exclude": ["node_modules", "**/*.spec.ts"]
 }

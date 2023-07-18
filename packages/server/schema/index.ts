@@ -13,7 +13,6 @@ const userType = new GraphQLObjectType({
   name: 'User',
   fields: () => ({
     userName: { type: GraphQLString },
-    name: { type: GraphQLString },
   })
 });
 
@@ -36,7 +35,6 @@ const Mutations = new GraphQLObjectType({
       type: userType,
       args: {
         userName: { type: new GraphQLNonNull(GraphQLString)},
-        name: { type: new GraphQLNonNull(GraphQLString)},
       },
       async resolve (parent, args) {
         const res = await userResolver.createUser(args);

@@ -15,5 +15,6 @@
     "strictPropertyInitialization": false,
     "skipLibCheck": true,
     "composite": true
-  }
+  },
+  "exclude": ["node_modules", "**/*.spec.ts"]
 }

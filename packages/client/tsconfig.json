@@ -20,10 +20,10 @@
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
-  "exclude": ["node_modules"],
   "composite": true,
   "declaration": true,
   "references": [
     { "path": "../types" }
   ],
+  "exclude": ["node_modules", "**/*.spec.ts"]
 }

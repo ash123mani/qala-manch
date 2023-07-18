@@ -6,7 +6,7 @@
   "license": "MIT",
   "type": "commonjs",
   "scripts": {
-    "dev": "tsc && tsc-alias && NODE_ENV=development node dist/index.js",
+    "dev": "tsc && tsc-alias && NODE_ENV=development nodemon dist/index.js",
     "lint": "eslint . --ext .ts",
     "lint-and-fix": "eslint . --ext .ts --fix"
   },
