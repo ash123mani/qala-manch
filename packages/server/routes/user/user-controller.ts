@@ -1,6 +1,6 @@
 import { FastifyRequest, FastifyReply } from 'fastify';
 import { createUser } from '@/resolvers/user';
-import { UserPayload  } from '../../../types';
+import { UserPayload  } from '@qala-manch/shared';
 
 class UserController {
   async createUser (request: FastifyRequest, reply: FastifyReply) {

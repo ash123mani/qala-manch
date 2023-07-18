@@ -23,7 +23,7 @@
   "composite": true,
   "declaration": true,
   "references": [
-    { "path": "../types" }
+    { "path": "../shared" }
   ],
   "exclude": ["node_modules", "**/*.spec.ts"]
 }

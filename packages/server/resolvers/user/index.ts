@@ -1,5 +1,5 @@
 import User from '@/models/user';
-import { UserPayload,UserResponse } from '@qala-manch/types';
+import { UserPayload,UserResponse } from '@qala-manch/shared';
 
 export const createUser = async (payload: UserPayload): Promise<UserResponse> => {
     const { userName } = payload;

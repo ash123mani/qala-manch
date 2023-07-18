@@ -1,5 +1,5 @@
 {
-  "name": "@qala-manch/types",
+  "name": "@qala-manch/shared",
   "private": true,
   "version": "0.0.0",
   "description": "Qala Manch Shared Types",

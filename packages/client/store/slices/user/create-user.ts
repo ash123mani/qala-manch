@@ -1,5 +1,5 @@
-import { createAsyncThunk } from '@reduxjs/toolkit'
-import { UserPayload, UserResponse } from "@qala-manch/types";
+import { createAsyncThunk } from '@reduxjs/toolkit';
+import { UserPayload, UserResponse } from "@qala-manch/shared";
 import { CREATE_USER } from "@/gql-client/queries";
 import gqlClient from '@/gql-client'
 import userSlice from './index'
