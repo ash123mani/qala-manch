@@ -1,0 +1,84 @@
+@import '@/styles/style.module.scss';
+
+$content-gap: 12px;
+
+.steps {
+  display: flex;
+  justify-content: space-between;
+
+  &--horizontal {
+    flex-direction: row;
+    width: 100%;
+  }
+
+  &__item-container {
+    display: flex;
+    flex-grow: 1;
+    overflow: hidden;
+    &:last-of-type {
+      flex-grow: unset;
+    }
+  }
+
+  &__item-icon {
+    height: 40px;
+    width: 40px;
+    background-color: $neutral-200;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 40px;
+
+    &--progress {
+      background-color: $auxillary-500;
+    }
+    &--finish {
+      background-color: $auxillary-200;
+    }
+  }
+
+
+  &__number {
+    color: $neutral-500;
+
+    &--progress {
+      color: $white;
+    }
+  }
+
+  &__content {
+    margin: 0 $content-gap;
+    flex: 1;
+
+    &-title {
+      @include typography('body', 'regular');
+      line-height: 40px;
+      position: relative;
+      display: inline-block;
+      padding-inline-end: $content-gap;
+      &::after {
+        content: '';
+        position: absolute;
+        right: 0;
+        top: 20px;
+        height: 1px;
+        width: 9999px;
+        background-color: $neutral-400;
+        inset-inline-start: 100%;
+      }
+      &--last {
+        &::after {
+          all: unset;
+        }
+      }
+      &--active {
+        &::after {
+          background-color: green;
+        }
+      }
+    }
+
+    &-description {
+      @include typography('caption', 'regular');
+    }
+  }
+}

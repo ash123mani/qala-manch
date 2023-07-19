@@ -3,9 +3,10 @@ import { useRouter } from 'next/router'
 import React, { useState } from "react";
 
 import classNames from "@/styles/pages/home.module.scss";
-import { Input, Button } from "@/app-components";
+import { Input, Button, Steps } from "@/app-components";
 import { useAppDispatch } from "@/store";
 import { createUser } from "@/store/slices/user/create-user";
+import { mockSteps } from "@qala-manch/shared";
 
 export default function Home() {
   const router = useRouter()
@@ -31,7 +32,7 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
       <div className={`${classNames.home}`}>
-        <form className={classNames["home__form"]} onSubmit={handleUserNameSubmit}>
+        {/* <form className={classNames["home__form"]} onSubmit={handleUserNameSubmit}>
           <Input
             size="large"
             placeholder="Enter your username"
@@ -41,7 +42,8 @@ export default function Home() {
           <Button type="submit" className={classNames["home__submit"]}>
             Submit
           </Button>
-        </form>
+        </form> */}
+        <Steps steps={mockSteps} />
       </div>
     </>
   );
