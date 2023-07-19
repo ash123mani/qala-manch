@@ -34,7 +34,7 @@ const Steps = ({ type = 'horizontal', steps }: StepProps): JSX.Element => {
         )
 
         return (
-          <div className={classNames["steps__item-container"]}>
+          <div className={classNames["steps__item-container"]} key={index}>
           <div className={iconClassName}>
             <span className={numberClassName}>{getStepIcon(status, index + 1)}</span>
           </div>
@@ -51,7 +51,7 @@ const Steps = ({ type = 'horizontal', steps }: StepProps): JSX.Element => {
 
 const getStepIcon = (status: string | undefined, count: number) => {
   if (status === Status.Finish) {
-    return "🏅"
+    return "✅"
   }
   if (status === Status.Error) {
     return '❌'
