@@ -1,0 +1,35 @@
+@import "@/styles/style.module.scss";
+
+.welcome-screen {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+
+  &__title {
+    margin: 1rem 0;
+    color: $auxillary-700;
+  }
+
+  &__sub-title {
+    margin: 1rem 0;
+    color: $warning-500;
+  }
+
+  &__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin: 2rem 0;
+    width: 100%;
+  }
+
+  &__explore-btn {
+    flex-grow: 1;
+  }
+
+  &__register-btn {
+    flex-grow: 1;
+  }
+}

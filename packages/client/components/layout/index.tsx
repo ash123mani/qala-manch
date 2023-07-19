@@ -7,13 +7,15 @@ const inter =  Recursive ({ subsets: ["latin"] });
 
 const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   return (
-    <div className={`${inter.className}`}>
+    <div className={`${inter.className} ${layoutClassNames["container"]}`}>
       <nav>
-        <header className={layoutClassNames["layout-logo"]}>
+        <header className={layoutClassNames["header"]}>
           <Link href="/" className={layoutClassNames.link}>Qala Manch</Link>
         </header>
       </nav>
-      {children}
+      <main className={layoutClassNames["layout"]}>
+        {children}
+      </main>
     </div>
   );
 };

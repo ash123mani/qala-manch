@@ -1,12 +1,23 @@
-@import '@/styles/style.module.scss';
+@import "@/styles/style.module.scss";
 
-.layout-logo {
+.container {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.header {
   padding: 24px 120px;
-  @include typography('h2', 'bold');
-  border-bottom: 1px solid $neutral-400;
+  @include typography("h2", "bold");
+  border-bottom: 1px solid $neutral-100;
+}
+
+.layout {
+  padding: 24px 120px;
+  flex: 1;
 }
 
 .link {
   color: $primary-700;
-  @include typography('h2', 'bold');
+  @include typography("h2", "bold");
 }
