@@ -15,3 +15,9 @@ export enum Status {
   Finish = 'finish',
   Error = 'error'
 }
+
+
+export enum Type {
+  Vertical = 'vertical',
+  Horizontal = 'horizontal'
+}

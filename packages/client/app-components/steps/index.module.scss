@@ -10,6 +10,10 @@ $content-gap: 12px;
     flex-direction: row;
     width: 100%;
   }
+  &--vertical {
+    flex-direction: column;
+    height: 100%;
+  }
 
   &__item-container {
     display: flex;
@@ -18,6 +22,20 @@ $content-gap: 12px;
     &:last-of-type {
       flex-grow: unset;
     }
+    &--vertical {
+      position: relative;
+    }
+  }
+
+  &__tail--vertical {
+    position: absolute;
+top: 0;
+inset-inline-start: 20px;
+width: 1px;
+height: 100%;
+padding: 38px 0 6px;
+background-color: $neutral-400;
+z-index: -1;
   }
 
   &__item-icon {
@@ -73,6 +91,11 @@ $content-gap: 12px;
       &--active {
         &::after {
           background-color: green;
+        }
+      }
+      &--vertical {
+        &::after {
+          display: none;
         }
       }
     }
