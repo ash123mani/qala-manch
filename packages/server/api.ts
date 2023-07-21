@@ -1,4 +1,4 @@
-import Fastify, {FastifyInstance} from 'fastify';
+import Fastify, { FastifyInstance } from 'fastify';
 import mercurius from 'mercurius';
 import fastifySwagger from '@fastify/swagger';
 import fastifySwaggerUi from '@fastify/swagger-ui';
@@ -6,10 +6,10 @@ import cors from '@fastify/cors';
 
 import mongoosePlugin from '@/plugins/mongoose';
 import corsPluginOptions from '@/plugins/cors';
-import {swaggerOptions} from '@/plugins/swagger';
+import { swaggerOptions } from '@/plugins/swagger';
 import errorHandler from '@/errors';
 import dbConfig from '@/config/db';
-import {Logger} from '@/types';
+import { Logger } from '@/types';
 import routes from './routes';
 import schema from './schema';
 
@@ -48,6 +48,11 @@ export const buildApi = async function (): Promise<FastifyInstance> {
 
   routes.forEach((route) => {
     fastify.route(route);
+  });
+
+  fastify.ready((err) => {
+    if (err) throw err;
+    fastify.swagger();
   });
 
   return fastify;

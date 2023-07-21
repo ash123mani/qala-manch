@@ -2,7 +2,7 @@ import React from "react";
 import clsx from "clsx";
 
 import { BtnProps } from "./types";
-import btnClassNames from "./style.module.scss";
+import clsn from "./style.module.scss";
 
 const Button = ({
   children,
@@ -17,8 +17,8 @@ const Button = ({
   const btnClassName = clsx(
     "button",
     className,
-    size && `${btnClassNames[`button--${variant}--${size}`]}`,
-    variant && `${btnClassNames[`button--${variant}`]}`
+    size && `${clsn[`button--${variant}--${size}`]}`,
+    variant && `${clsn[`button--${variant}`]}`
   );
 
   return (

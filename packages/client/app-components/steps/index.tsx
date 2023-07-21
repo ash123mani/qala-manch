@@ -1,10 +1,10 @@
 import React, { useMemo } from "react";
 import clsx from "clsx";
-import classNames from "./index.module.scss";
+import clsn from "./index.module.scss";
 import { StepProps, Status, Type } from "./types";
 
 const Steps = ({ type = "horizontal", steps }: StepProps): JSX.Element => {
-  const stepClassName = clsx(classNames.steps, classNames[`steps--${type}`]);
+  const stepClassName = clsx(clsn.steps, clsn[`steps--${type}`]);
 
   return (
     <div className={stepClassName}>
@@ -12,25 +12,25 @@ const Steps = ({ type = "horizontal", steps }: StepProps): JSX.Element => {
         const { title, description, status } = step;
         const isLast = index === steps.length - 1;
 
-        const stepsClassName = clsx(classNames["steps__item-container"], classNames[`steps__item-container--${type}`]);
+        const stepsClassName = clsx(clsn["steps__item-container"], clsn[`steps__item-container--${type}`]);
         const titleClassName = clsx(
-          classNames["steps__content-title"],
-          isLast && classNames["steps__content-title--last"],
-          steps[index + 1]?.status === Status.Progress && classNames["steps__content-title--active"],
-          classNames[`steps__content-title--${type}`]
+          clsn["steps__content-title"],
+          isLast && clsn["steps__content-title--last"],
+          steps[index + 1]?.status === Status.Progress && clsn["steps__content-title--active"],
+          clsn[`steps__content-title--${type}`]
         );
-        const iconClassName = clsx(classNames["steps__item-icon"], status && classNames[`steps__item-icon--${status}`]);
-        const numberClassName = clsx(classNames["steps__number"], status && classNames[`steps__item-icon--${status}`]);
+        const iconClassName = clsx(clsn["steps__item-icon"], status && clsn[`steps__item-icon--${status}`]);
+        const numberClassName = clsx(clsn["steps__number"], status && clsn[`steps__item-icon--${status}`]);
 
         return (
           <div className={stepsClassName} key={index}>
             <div className={iconClassName}>
               <span className={numberClassName}>{getStepIcon(status, index + 1)}</span>
             </div>
-            {type === Type.Vertical && !isLast && <div className={classNames["steps__tail--vertical"]}></div>}
-            <div className={classNames["steps__content"]}>
+            {type === Type.Vertical && !isLast && <div className={clsn["steps__tail--vertical"]}></div>}
+            <div className={clsn["steps__content"]}>
               <div className={titleClassName}>{title}</div>
-              <div className={classNames["steps__content-description"]}>{description}</div>
+              <div className={clsn["steps__content-description"]}>{description}</div>
             </div>
           </div>
         );

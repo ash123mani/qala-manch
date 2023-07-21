@@ -2,7 +2,7 @@ import React, {useState, MouseEvent, FC, SetStateAction} from "react";
 import clsx from "clsx";
 
 import {DropDownProps, ListItem} from "./types";
-import dropDownClassNames from "./style.module.scss";
+import clsn from "./style.module.scss";
 
 const DropDown: FC<DropDownProps> = ({
   className,
@@ -20,12 +20,12 @@ const DropDown: FC<DropDownProps> = ({
 
   const dropDownClassName = clsx(
     className && className,
-    dropDownClassNames["drop-down"],
-    size && dropDownClassNames[`drop-down--${size}`]
+    clsn["drop-down"],
+    size && clsn[`drop-down--${size}`]
   );
   const selectClassName = clsx(
-    dropDownClassNames["drop-down__select"],
-    size && dropDownClassNames[`drop-down__select--${size}`]
+    clsn["drop-down__select"],
+    size && clsn[`drop-down__select--${size}`]
   );
 
   const handleToggleOptions = () => {
@@ -63,9 +63,9 @@ const DropDown: FC<DropDownProps> = ({
 
   const renderNamePill = () => {
     return (
-      <div className={dropDownClassNames[`drop-down__name-pills`]}>
+      <div className={clsn[`drop-down__name-pills`]}>
         {selected.map((selection) => {
-          return <span className={dropDownClassNames[`drop-down__name-pill`]}>{selection[nameKey]}</span>;
+          return <span className={clsn[`drop-down__name-pill`]}>{selection[nameKey]}</span>;
         })}
       </div>
     );
@@ -78,7 +78,7 @@ const DropDown: FC<DropDownProps> = ({
         <span>{showOptions ? "⬆️" : "⬇️"}</span>
       </div>
       {showOptions && (
-        <div className={dropDownClassNames["drop-down__options"]}>
+        <div className={clsn["drop-down__options"]}>
           {!!options.length &&
             options.map((option) => {
               const isSelected = isOptionAlreadySelected(option);
@@ -86,8 +86,8 @@ const DropDown: FC<DropDownProps> = ({
                 <div
                   key={option[idKey]}
                   className={clsx(
-                    dropDownClassNames["drop-down__option"],
-                    isSelected && dropDownClassNames[`drop-down__option--selected`]
+                    clsn["drop-down__option"],
+                    isSelected && clsn[`drop-down__option--selected`]
                   )}
                   onClick={(e) => handleOptionSelect(e, option)}
                 >

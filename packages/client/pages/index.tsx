@@ -2,11 +2,10 @@ import Head from "next/head";
 import { useRouter } from 'next/router'
 import React, { useState } from "react";
 
-import classNames from "@/styles/pages/home.module.scss";
-import { Input, Button, Steps } from "@/app-components";
+import clsn from "@/styles/pages/home.module.scss";
+import { Input, Button } from "@/app-components";
 import { useAppDispatch } from "@/store";
 import { createUser } from "@/store/slices/user/create-user";
-import { mockSteps } from "@qala-manch/shared";
 
 export default function Home() {
   const router = useRouter()
@@ -31,19 +30,18 @@ export default function Home() {
         <meta name="description" content="Know the Artists around you" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
-      <div className={`${classNames.home}`}>
-        {/* <form className={classNames["home__form"]} onSubmit={handleUserNameSubmit}>
+      <div className={`${clsn.home}`}>
+        <form className={clsn["home__form"]} onSubmit={handleUserNameSubmit}>
           <Input
             size="large"
             placeholder="Enter your username"
             onChange={handleUserNameChange}
-            className={classNames["home__input"]}
+            className={clsn["home__input"]}
           />
-          <Button type="submit" className={classNames["home__submit"]}>
+          <Button type="submit" className={clsn["home__submit"]}>
             Submit
           </Button>
-        </form> */}
-        <Steps steps={mockSteps} />
+        </form>
       </div>
     </>
   );
