@@ -1,20 +1,30 @@
 import User from '@/models/user';
-import { UserPayload,UserResponse } from '@qala-manch/shared';
+import { UserPayload, UserResponse, UserInterface } from '@qala-manch/shared';
 
 export const createUser = async (payload: UserPayload): Promise<UserResponse> => {
-    const { userName } = payload;
+    const { userName, basicInfo } = payload;
     const user = await User.findOne({ userName });
 
     if (!user) {
-      const user = await User.create({ userName });
+      await User.create({ userName });
+      const filter = { 'userName': userName };
+      const update = { $set: { 'profileSteps.basicInfo': basicInfo } };
+      const user = await User.findOneAndUpdate(filter, update, { new: true }) as UserInterface;
+
       return {
         userName: user.userName,
-        isNewUser: true
+        isNewUser: true,
+        profileSteps: {
+          basicInfo: user?.profileSteps?.basicInfo
+        }
       };
     } {
       return {
         userName: user.userName,
-        isNewUser: false
+        isNewUser: false,
+        profileSteps: {
+          basicInfo: user?.profileSteps?.basicInfo
+        }
       };
     }
 };

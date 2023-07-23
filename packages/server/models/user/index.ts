@@ -1,13 +1,32 @@
 import { Schema, InferSchemaType, Model, model } from 'mongoose';
+import { UserInterface } from '@qala-manch/shared';
 
-export interface UserInterface {
-  userName: string;
-}
 export type UserType = InferSchemaType<typeof schema>;
 type UserModel = Model<UserInterface>;
 
 const schema = new Schema<UserInterface, UserModel>({
-  userName: { type: String, required: [true, 'Please enter your username'] },
+  userName: {
+    type: String,
+    required: [true, 'Please enter your username.'],
+    trim: true
+  },
+  profileSteps: {
+    basicInfo: {
+      name: {
+        type: String,
+        // required: [true, 'Please enter your name'],
+        minLength: [3, 'Name should have atleast 3 words.']
+      },
+      email: {
+        type: String,
+        match: [
+          // eslint-disable-next-line max-len, no-useless-escape
+          /^[a-zA-Z0-9.!#$%&'*+\/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/,
+          'Please provide a valid email',
+        ],
+      }
+    }
+  }
 });
 
 export default model<UserInterface, UserModel>('User', schema);

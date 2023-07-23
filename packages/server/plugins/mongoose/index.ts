@@ -1,14 +1,13 @@
-import { FastifyInstance, HookHandlerDoneFunction } from 'fastify';
+import { FastifyInstance, HookHandlerDoneFunction, FastifyPluginOptions } from 'fastify';
 import fp from 'fastify-plugin';
 import consola from 'consola';
 import mongoose from 'mongoose';
 
 async function fastifyMongoose (
   fastify: FastifyInstance,
-  options: any, // change it to proper type interface
+  options: FastifyPluginOptions,
   next: any
 ) {
-
   try {
     await mongoose.connect(options.dbUrl, options.dbOptions);
 
@@ -17,12 +16,10 @@ async function fastifyMongoose (
     const mongo = {
       db: mongoose.connection,
     };
-    fastify
-      .decorate('mongo', mongo)
-      .addHook('preClose', function (done: HookHandlerDoneFunction) {
-        mongoose.disconnect();
-        done();
-      });
+    fastify.decorate('mongo', mongo).addHook('preClose', function (done: HookHandlerDoneFunction) {
+      mongoose.disconnect();
+      done();
+    });
 
     next();
   } catch (err) {

@@ -1,4 +1,4 @@
-@import '@/styles/style.module.scss';
+@import "@/styles/style.module.scss";
 
 $content-gap: 12px;
 
@@ -29,13 +29,13 @@ $content-gap: 12px;
 
   &__tail--vertical {
     position: absolute;
-top: 0;
-inset-inline-start: 20px;
-width: 1px;
-height: 100%;
-padding: 38px 0 6px;
-background-color: $neutral-400;
-z-index: -1;
+    top: 0;
+    inset-inline-start: 20px;
+    width: 1px;
+    height: 100%;
+    padding: 38px 0 6px;
+    background-color: $neutral-400;
+    z-index: -1;
   }
 
   &__item-icon {
@@ -54,7 +54,6 @@ z-index: -1;
     }
   }
 
-
   &__number {
     color: $neutral-500;
 
@@ -68,13 +67,13 @@ z-index: -1;
     flex: 1;
 
     &-title {
-      @include typography('body', 'regular');
+      @include typography("body", "regular");
       line-height: 40px;
       position: relative;
       display: inline-block;
       padding-inline-end: $content-gap;
       &::after {
-        content: '';
+        content: "";
         position: absolute;
         right: 0;
         top: 20px;
@@ -90,7 +89,7 @@ z-index: -1;
       }
       &--active {
         &::after {
-          background-color: green;
+          background-color: $success-600;
         }
       }
       &--vertical {
@@ -101,7 +100,7 @@ z-index: -1;
     }
 
     &-description {
-      @include typography('caption', 'regular');
+      @include typography("caption", "regular");
     }
   }
 }

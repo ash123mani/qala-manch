@@ -18,7 +18,8 @@
     "skipLibCheck": true,                                 /* Skip type checking all .d.ts files. */
     "plugins": [
       { "transform": "typescript-transform-paths" },
-    ]
+    ],
+    "experimentalDecorators": true
   },
   "composite": true,
   "declaration": true,
