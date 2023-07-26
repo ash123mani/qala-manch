@@ -1,47 +1,22 @@
-import { FastifyInstance, FastifyPluginOptions } from 'fastify';
 import { StorageEngine } from 'fastify-multer/lib/interfaces';
-import cloudinary from 'cloudinary';
+import { v2 as cloudinary } from 'cloudinary';
 import { CloudinaryStorage, Options } from 'multer-storage-cloudinary';
 import multer from 'fastify-multer';
-import fp from 'fastify-plugin';
 import consola from 'consola';
 import '@/utils/load-env';
+import { cloudinaryConfig } from '@/config/cloudinary';
 
-async function fpCloudinary (
-  fastify: FastifyInstance,
-  options: FastifyPluginOptions,
-  next: any
-) {
-  try {
-    const v2Cloudinary = cloudinary.v2;
-    v2Cloudinary.config(options);
+cloudinary.config(cloudinaryConfig);
 
-    const storage = new CloudinaryStorage({
-      cloudinary: v2Cloudinary,
-      params: {
-        folder: 'qala-manch',
-        format: async () => 'jpg',
-        transformation: [{ width: 800, height: 800, crop: 'limit' }],
-      },
-    } as Options);
+const storage = new CloudinaryStorage({
+  cloudinary: cloudinary,
+  params: {
+    folder: 'qala-manch',
+    format: async () => 'avif',
+  },
+} as Options);
 
-    const upload = multer({ storage: storage as unknown as StorageEngine });
-    consola.success('Connected to CloudinaryStorage');
+export const upload = multer({ storage: storage as unknown as StorageEngine });
 
-    fastify.decorate('multer', { upload });
-    consola.success('Added Multer decorator');
+consola.success('Connected to CloudinaryStorage');
 
-    next();
-  } catch (err) {
-    consola.error('Failed to conneect CloudinaryStorage');
-
-    if (err) {
-      return next(err);
-    }
-    return next();
-  }
-}
-
-export default fp(fpCloudinary, {
-  name: 'fastify-cloudinary',
-});

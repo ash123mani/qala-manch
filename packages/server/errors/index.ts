@@ -8,7 +8,7 @@ interface CustomError extends FastifyError {
 }
 
 interface ErrorObj {
-  path: string,
+  path: string;
   message: string;
 }
 
@@ -21,14 +21,13 @@ const errorHandler = (error: CustomError, request: FastifyRequest, reply: Fastif
     Object.values(error.errors).forEach((err: ErrorObj) => {
       message += `${err.path}: ${err.message}${eol}`;
     });
-
-    reply.send({
-      statusCode: error.statusCode,
-      code: error.code,
-      name: error.name,
-      message
-    });
   }
+  reply.send({
+    statusCode: error.statusCode || 500,
+    code: error.code,
+    name: error.name,
+    message: message || error.message,
+  });
 };
 
 export default errorHandler;

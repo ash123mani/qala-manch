@@ -1,5 +1,6 @@
 import { Route } from '@/types';
 import userController from './user-controller';
+// import { upload } from '@/plugins/cloudinary';
 
 const user: Route[] = [
   {
@@ -7,24 +8,40 @@ const user: Route[] = [
     url: '/api/user',
     handler: userController.createUser,
   },
-  {
-    method: 'POST',
-    url: '/api/user/profile-pic',
-    preHandler (request) {
-      // eslint-disable-next-line no-console
-      console.log('request.server.multer.upload', request.server.multer.upload);
-      request.server.multer.upload.single('image');
-    },
-    async handler (request, reply) {
-      // eslint-disable-next-line no-console
-      console.log('request.file.filename', request.file.filename);
-      // eslint-disable-next-line no-console
-      console.log('originalname: request.file.originalname', request.file.originalname);
-      return reply.send({
-        file: request.file,
-      });
-    },
-  },
+  // {
+  //   method: 'POST',
+  //   url: '/api/upload/photo',
+  //   preHandler: upload.single('image'),
+  //   handler (request, reply) {
+  //     try {
+  //       reply.code(200).send({
+  //         fileds: request.file || 'undefineds',
+  //         message: 'SUCCESS'
+  //       });
+  //     } catch(e) {
+  //       reply.send({
+  //         error: e,
+  //       });
+  //     }
+  //   },
+  // },
+  // {
+  //   method: 'POST',
+  //   url: '/api/upload/photos',
+  //   preHandler: upload.array('images'),
+  //   handler (request, reply) {
+  //     try {
+  //       reply.code(200).send({
+  //         fileds: request.files || 'undefineds',
+  //         message: 'SUCCESS'
+  //       });
+  //     } catch(e) {
+  //       reply.send({
+  //         error: e,
+  //       });
+  //     }
+  //   },
+  // }
 ];
 
 export default user;

@@ -3,11 +3,7 @@ import fp from 'fastify-plugin';
 import consola from 'consola';
 import mongoose from 'mongoose';
 
-async function fastifyMongoose (
-  fastify: FastifyInstance,
-  options: FastifyPluginOptions,
-  next: any
-) {
+async function fastifyMongoose (fastify: FastifyInstance, options: FastifyPluginOptions, next: any) {
   try {
     await mongoose.connect(options.dbUrl, options.dbOptions);
 
@@ -16,6 +12,7 @@ async function fastifyMongoose (
     const mongo = {
       db: mongoose.connection,
     };
+
     fastify.decorate('mongo', mongo).addHook('preClose', function (done: HookHandlerDoneFunction) {
       mongoose.disconnect();
       done();
