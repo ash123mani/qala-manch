@@ -1,4 +1,4 @@
-# qala-manch
+# qala-manch (monorepo)
 
 A platform for artists by an artist.
 
