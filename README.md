@@ -28,5 +28,11 @@ StoryBook
 
 Redux Toolkit
 
+-------------
+Commands:-
+    
+    Add a node-module inside a scope:
+       lerna exec --scope=@qala-manch/server yarn add  express
+
 
 
