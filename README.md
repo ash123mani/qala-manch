@@ -33,6 +33,9 @@ Commands:-
     
     Add a node-module inside a scope:
        lerna exec --scope=@qala-manch/server yarn add  express
+        or
+       npm install express -w @qala-manch/server
+
 
 
 
