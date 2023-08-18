@@ -1,6 +1,6 @@
 import '@/utils/load-env';
 
-const dbConfig = {
+export const dbConfig = {
   dbUrl: process.env.MONGODB_URL,
   dbOptions: {
     family: 4,
@@ -9,5 +9,3 @@ const dbConfig = {
     keepAlive: true
   }
 };
-
-export default dbConfig;

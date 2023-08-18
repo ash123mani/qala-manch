@@ -1,24 +1,36 @@
-import Head from "next/head";
-import { useRouter } from 'next/router'
-import { useSearchParams } from 'next/navigation'
-import WelcomeScreen from "@/components/onboard/welcome-screen";
-import { UserTypes } from '@qala-manch/shared'
-import { explorerSteps, artistSteps } from '@qala-manch/shared'
-import { Steps } from '@/app-components'
- 
+import Head from 'next/head';
+import { useRouter } from 'next/router';
+import { useState, useEffect } from 'react';
+import { useSearchParams } from 'next/navigation';
+import WelcomeScreen from '@/components/onboard/welcome-screen';
+import { UserTypes, Status, Step } from '@qala-manch/shared';
+import { explorerSteps, artistSteps } from '@qala-manch/shared';
+import { Steps, Button } from '@/app-components';
+
 const ArtistOnboard = () => {
   const router = useRouter();
   const searchParams = useSearchParams();
-  const userType = searchParams.get('type')
-  const stepsConfig = userType === UserTypes.Artist ? artistSteps : explorerSteps;
+  const userType = searchParams.get('type');
+  const [steps, setSteps] = useState<Step[]>([]);
+  const [progressIndex, setProgressIndex] = useState<number>(0);
+
+  useEffect(() => {
+    const newSteps = userType === UserTypes.Artist ? artistSteps : explorerSteps;
+    newSteps[progressIndex].status = Status.Progress;
+    setSteps(newSteps);
+  }, [userType, progressIndex]);
 
   const handleRegister = () => {
-    router.push(`/onboard?type=${UserTypes.Artist}`)
+    router.push(`/onboard?type=${UserTypes.Artist}`);
   };
 
   const handleExplore = () => {
-    router.push(`/onboard?type=${UserTypes.Explorer}`)
-  }
+    router.push(`/onboard?type=${UserTypes.Explorer}`);
+  };
+
+  const handleNext = () => {
+    setProgressIndex(progressIndex + 1);
+  };
 
   return (
     <>
@@ -26,7 +38,13 @@ const ArtistOnboard = () => {
         <title>Artist Onbard</title>
         <meta name="description" content="Artist Details for onboarding" />
       </Head>
-      {!userType ? <WelcomeScreen onRegister={handleRegister} onExplore={handleExplore} /> : <Steps steps={stepsConfig} type='vertical' />}
+      {!userType ? (
+        <WelcomeScreen onRegister={handleRegister} onExplore={handleExplore} />
+      ) : (
+        <>
+          <Steps steps={steps} /> <Button onClick={handleNext}>NextStep</Button>
+        </>
+      )}
     </>
   );
 };

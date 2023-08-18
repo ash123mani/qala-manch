@@ -7,15 +7,25 @@ type UserModel = Model<UserInterface>;
 const schema = new Schema<UserInterface, UserModel>({
   userName: {
     type: String,
-    required: [true, 'Please enter your username.'],
+    required: [ true, 'Please enter your username.'],
     trim: true
+  },
+  hash: {
+    type: String,
+    required: true,
+    select: false
+  },
+  salt: {
+    type: String,
+    required: true,
+    select: false
   },
   profileSteps: {
     basicInfo: {
       name: {
         type: String,
         // required: [true, 'Please enter your name'],
-        minLength: [3, 'Name should have atleast 3 words.']
+        minLength: [ 3, 'Name should have atleast 3 words.' ]
       },
       email: {
         type: String,
@@ -27,6 +37,10 @@ const schema = new Schema<UserInterface, UserModel>({
       }
     }
   }
-});
+},
+  {
+    timestamps: true
+  }
+);
 
 export default model<UserInterface, UserModel>('User', schema);

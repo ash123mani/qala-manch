@@ -4,7 +4,7 @@ import { CloudinaryStorage, Options } from 'multer-storage-cloudinary';
 import multer from 'fastify-multer';
 import consola from 'consola';
 import '@/utils/load-env';
-import { cloudinaryConfig } from '@/config/cloudinary';
+import { cloudinaryConfig } from '@/config';
 
 cloudinary.config(cloudinaryConfig);
 

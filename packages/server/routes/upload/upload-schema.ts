@@ -9,7 +9,7 @@ const successImageUpload = S.object()
   .prop('size', S.number())
   .prop('filename', S.string());
 
-const successImagesUpload = S.object().prop('fileds', S.array().items(successImageUpload).required());
+const successImagesUpload = S.object().prop('fiels', S.array().items(successImageUpload).required());
 
 const schema = {
   image: {

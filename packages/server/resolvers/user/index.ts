@@ -1,30 +1,51 @@
+import crypto from 'crypto';
 import User from '@/models/user';
-import { UserPayload, UserResponse, UserInterface } from '@qala-manch/shared';
+import type { UserPayload, UserResponse } from '@qala-manch/shared';
+import { PASSWORD_LENGTH, USER_NAME_LENGTH } from '@qala-manch/shared';
+import { BaseError, httpStatus } from '@/errors';
+import { errorDesc } from '@/config';
 
 export const createUser = async (payload: UserPayload): Promise<UserResponse> => {
-    const { userName, basicInfo } = payload;
-    const user = await User.findOne({ userName });
+  const { userName, password } = payload;
 
-    if (!user) {
-      await User.create({ userName });
-      const filter = { 'userName': userName };
-      const update = { $set: { 'profileSteps.basicInfo': basicInfo } };
-      const user = await User.findOneAndUpdate(filter, update, { new: true }) as UserInterface;
+  const salt = crypto.randomBytes(16).toString('hex');
+  const hash = crypto.pbkdf2Sync(password, salt, 1000, 64, 'sha512').toString('hex');
+  const newUser = {
+    userName,
+    hash,
+    salt,
+  };
 
-      return {
-        userName: user.userName,
-        isNewUser: true,
-        profileSteps: {
-          basicInfo: user?.profileSteps?.basicInfo
-        }
-      };
-    } {
-      return {
-        userName: user.userName,
-        isNewUser: false,
-        profileSteps: {
-          basicInfo: user?.profileSteps?.basicInfo
-        }
-      };
-    }
+  if (!userName || !password) {
+    throw new BaseError(
+      httpStatus.BAD_REQUEST.name, httpStatus.BAD_REQUEST.code, true, httpStatus.BAD_REQUEST.description
+    );
+  }
+
+  if (userName.length < USER_NAME_LENGTH) {
+    throw new BaseError(
+      httpStatus.BAD_REQUEST.name, httpStatus.BAD_REQUEST.code, true, errorDesc.createUser.userNameLength
+    );
+  }
+
+  if (password.length < PASSWORD_LENGTH) {
+    throw new BaseError(
+      httpStatus.BAD_REQUEST.name, httpStatus.BAD_REQUEST.code, true, errorDesc.createUser.passwordLength
+    );
+  }
+
+
+  const userNameExisted = await User.findOne({ userName });
+
+  if (userNameExisted) {
+    throw new BaseError(
+      httpStatus.CONFLICT.name, httpStatus.CONFLICT.code, true, errorDesc.createUser.userExists
+    );
+  }
+
+  const createdUser = await User.create(newUser);
+
+  return {
+    userName: createdUser.userName,
+  };
 };

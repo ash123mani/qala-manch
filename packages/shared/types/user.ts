@@ -1,11 +1,14 @@
 export interface UserInterface {
   userName: string;
+  hash: string;
+  salt: string;
   profileSteps: {
     basicInfo: BasicInfoStepInterface
   };
 }
 export interface UserPayload {
   userName: string;
+  password: string;
   basicInfo?: BasicInfoStepInterface | undefined;
 }
 
@@ -15,9 +18,8 @@ export interface ProfileSteps {
   }
 }
 
-export interface UserResponse extends ProfileSteps {
+export interface UserResponse {
   userName: string;
-  isNewUser: boolean;
 }
 
 export enum UserTypes {

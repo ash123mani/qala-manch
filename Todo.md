@@ -1,0 +1,1 @@
+extend the base tscofig to shared and server packages

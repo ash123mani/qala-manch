@@ -8,7 +8,7 @@ export const swaggerOptions = {
       version: pkg.version,
       contact: {
         name: 'Ashutosh',
-        url: 'https://falak.netlify.app/',
+        url: 'https://falak.netlify.app/about',
         email: 'ashuma2721@gmail.com'
       }
     },
@@ -17,7 +17,7 @@ export const swaggerOptions = {
       description: 'GitHub repository'
     },
     tags: [
-      { name: 'Qala Manch', description: 'Qala Manch API\'s'}
+      { name: 'Qala Manch', description: 'Qala Manch API\'s'},
     ],
     host: 'localhost:3001',
     schemes: ['http', 'https'],
