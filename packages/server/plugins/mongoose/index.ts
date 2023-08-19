@@ -3,7 +3,9 @@ import fp from 'fastify-plugin';
 import consola from 'consola';
 import mongoose from 'mongoose';
 
-async function fastifyMongoose (fastify: FastifyInstance, options: FastifyPluginOptions, next: any) {
+async function fastifyMongoose (
+  fastify: FastifyInstance, options: FastifyPluginOptions, done: HookHandlerDoneFunction
+) {
   try {
     await mongoose.connect(options.dbUrl, options.dbOptions);
 
@@ -18,14 +20,14 @@ async function fastifyMongoose (fastify: FastifyInstance, options: FastifyPlugin
       done();
     });
 
-    next();
+    done();
   } catch (err) {
     consola.error('MONGO DB failed to start');
 
     if (err) {
-      return next(err);
+      return done(err as Error);
     }
-    return next();
+    return done();
   }
 }
 

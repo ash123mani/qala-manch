@@ -4,12 +4,13 @@ import type { UserPayload, UserResponse } from '@qala-manch/shared';
 import { PASSWORD_LENGTH, USER_NAME_LENGTH } from '@qala-manch/shared';
 import { BaseError, httpStatus } from '@/errors';
 import { errorDesc } from '@/config';
+import { generateHash } from '@/utils/auth';
 
 export const createUser = async (payload: UserPayload): Promise<UserResponse> => {
   const { userName, password } = payload;
 
   const salt = crypto.randomBytes(16).toString('hex');
-  const hash = crypto.pbkdf2Sync(password, salt, 1000, 64, 'sha512').toString('hex');
+  const hash = generateHash(password, salt);
   const newUser = {
     userName,
     hash,
