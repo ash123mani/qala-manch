@@ -48,5 +48,7 @@ export const createUser = async (payload: UserPayload): Promise<UserResponse> =>
 
   return {
     username: createdUser.username,
+    _id: createdUser._id,
+    createdAt: createdUser['createdAt']
   };
 };

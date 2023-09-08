@@ -36,6 +36,12 @@ const schema = new Schema<UserInterface, UserModel>({
         ],
       }
     }
+  },
+  createdAt: {
+    type: String
+  },
+  updatedAt: {
+    type: String
   }
 },
   {

@@ -2,6 +2,9 @@ export interface UserInterface {
   username: string;
   hash: string;
   salt: string;
+  _id: string;
+  createdAt: string;
+  updatedAt: string;
   profileSteps: {
     basicInfo: BasicInfoStepInterface
   };
@@ -20,6 +23,8 @@ export interface ProfileSteps {
 
 export interface UserResponse {
   username: string;
+  _id: string;
+  createdAt: string;
 }
 
 export enum UserTypes {

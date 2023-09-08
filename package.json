@@ -6,7 +6,9 @@
   "license": "MIT",
   "private": true,
   "workspaces": {
-    "packages": ["packages/*"]
+    "packages": [
+      "packages/*"
+    ]
   },
   "scripts": {
     "dev": "lerna run --parallel dev"
@@ -14,5 +16,8 @@
   "devDependencies": {
     "lerna": "^7.1.1",
     "typescript": "^5.1.5"
+  },
+  "dependencies": {
+    "lodash": "^4.17.21"
   }
 }

@@ -6,19 +6,21 @@ import User from '@/models/user';
 import { UserInterface } from '@qala-manch/shared';
 
 
-async function sessionSerialLizer (
+async function sessionSerializer (
   fastify: FastifyInstance, options: FastifyPluginOptions, done: HookHandlerDoneFunction
 ) {
   try {
     fastifyPassport.registerUserSerializer(async (user: UserInterface) => {
-      return user.username;
+      return user._id;
     });
 
-    fastifyPassport.registerUserDeserializer(async (username) => {
-      return await User.findOne({ username });
+    fastifyPassport.registerUserDeserializer(async (id) => {
+      return await User.findById(id);
     });
 
     consola.success('Success session-serialLizer-plugin');
+
+    done();
 
   } catch (err) {
     consola.error('Failed session-serialLizer-plugin');
@@ -31,7 +33,7 @@ async function sessionSerialLizer (
 
 }
 
-export const sessionSerialLizerPlugin =   fp(sessionSerialLizer, {
-  name: 'session-serialLizer-plugin',
+export const sessionSerializerPlugin = fp(sessionSerializer, {
+  name: 'sessionSerializer-plugin',
 });
 

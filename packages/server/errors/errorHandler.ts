@@ -14,6 +14,9 @@ export function logErrorMiddleware (err: Error, req: Request, res: Response, nex
 export function returnError (error: Error, request: FastifyRequest, reply: FastifyReply) {
   request.log.error('Error occured');
 
+  // eslint-disable-next-line no-console
+  console.log('error', error);
+
   reply.code(error.statusCode || 500).send({
     statusCode: error.statusCode || 500,
     code: error.code || error.statusCode || 500,
