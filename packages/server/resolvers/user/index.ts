@@ -3,7 +3,7 @@ import User from '@/models/user';
 import type { UserPayload, UserResponse } from '@qala-manch/shared';
 import { PASSWORD_LENGTH, USER_NAME_LENGTH } from '@qala-manch/shared';
 import { BaseError, httpStatus } from '@/errors';
-import { errorDesc } from '@/config';
+import { errorDesc } from '@/config/error-desc';
 import { generateHash } from '@/utils/auth';
 
 export const createUser = async (payload: UserPayload): Promise<UserResponse> => {

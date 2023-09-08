@@ -7,9 +7,9 @@ class UploadController {
         image: request.file,
         message: 'SUCCESS',
       });
-    } catch (e) {
+    } catch (error) {
       reply.send({
-        error: e,
+        error,
       });
     }
   }
@@ -20,9 +20,9 @@ class UploadController {
         images: request.files,
         message: 'SUCCESS',
       });
-    } catch (e) {
+    } catch (error) {
       reply.send({
-        error: e,
+        error,
       });
     }
   }

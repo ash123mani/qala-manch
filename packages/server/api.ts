@@ -6,15 +6,16 @@ import fastifySecureSession from '@fastify/secure-session';
 import cors from '@fastify/cors';
 import { contentParser } from 'fastify-multer';
 import { File } from 'fastify-multer/lib/interfaces';
-// import fastifyPassport from '@fastify/passport';
+import fastifyPassport from '@fastify/passport';
 
 import '@/utils/load-env';
 import mongoosePlugin from '@/plugins/mongoose';
 import corsPluginOptions from '@/plugins/cors';
 import { swaggerOptions } from '@/plugins/swagger';
-import { sessionOptions } from '@/plugins/auth';
+import { sessionOptions } from '@/plugins/auth-session';
 import { returnError } from '@/errors';
-import { dbConfig, envToLogger } from '@/config';
+import { dbConfig } from '@/config/db';
+import {  envToLogger } from '@/config/logger';
 import routes from './routes';
 import schema from './schema';
 
@@ -53,8 +54,8 @@ export const buildApi = async function (): Promise<FastifyInstance> {
     .register(cors, corsPluginOptions)
     .register(contentParser)
     .register(fastifySecureSession, sessionOptions)
-    // .register(fastifyPassport.initialize())
-    // .register(fastifyPassport.secureSession())
+    .register(fastifyPassport.initialize())
+    .register(fastifyPassport.secureSession())
     .register(fastifySwagger, swaggerOptions)
     .register(fastifySwaggerUi, swaggerOptions);
 
