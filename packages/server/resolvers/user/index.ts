@@ -7,23 +7,23 @@ import { errorDesc } from '@/config/error-desc';
 import { generateHash } from '@/utils/auth';
 
 export const createUser = async (payload: UserPayload): Promise<UserResponse> => {
-  const { userName, password } = payload;
+  const { username, password } = payload;
 
   const salt = crypto.randomBytes(16).toString('hex');
   const hash = generateHash(password, salt);
   const newUser = {
-    userName,
+    username,
     hash,
     salt,
   };
 
-  if (!userName || !password) {
+  if (!username || !password) {
     throw new BaseError(
       httpStatus.BAD_REQUEST.name, httpStatus.BAD_REQUEST.code, true, httpStatus.BAD_REQUEST.description
     );
   }
 
-  if (userName.length < USER_NAME_LENGTH) {
+  if (username.length < USER_NAME_LENGTH) {
     throw new BaseError(
       httpStatus.BAD_REQUEST.name, httpStatus.BAD_REQUEST.code, true, errorDesc.createUser.userNameLength
     );
@@ -36,7 +36,7 @@ export const createUser = async (payload: UserPayload): Promise<UserResponse> =>
   }
 
 
-  const userNameExisted = await User.findOne({ userName });
+  const userNameExisted = await User.findOne({ username });
 
   if (userNameExisted) {
     throw new BaseError(
@@ -47,6 +47,6 @@ export const createUser = async (payload: UserPayload): Promise<UserResponse> =>
   const createdUser = await User.create(newUser);
 
   return {
-    userName: createdUser.userName,
+    username: createdUser.username,
   };
 };

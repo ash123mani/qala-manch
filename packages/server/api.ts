@@ -12,7 +12,8 @@ import '@/utils/load-env';
 import mongoosePlugin from '@/plugins/mongoose';
 import corsPluginOptions from '@/plugins/cors';
 import { swaggerOptions } from '@/plugins/swagger';
-import { sessionOptions } from '@/plugins/auth-session';
+import { sessionOptions, sessionSerialLizerPlugin } from '@/plugins/auth-session';
+import passportStrategy from '@/plugins/auth-strategy';
 import { returnError } from '@/errors';
 import { dbConfig } from '@/config/db';
 import {  envToLogger } from '@/config/logger';
@@ -56,6 +57,8 @@ export const buildApi = async function (): Promise<FastifyInstance> {
     .register(fastifySecureSession, sessionOptions)
     .register(fastifyPassport.initialize())
     .register(fastifyPassport.secureSession())
+    .register(passportStrategy)
+    .register(sessionSerialLizerPlugin)
     .register(fastifySwagger, swaggerOptions)
     .register(fastifySwaggerUi, swaggerOptions);
 

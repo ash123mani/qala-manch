@@ -1,5 +1,5 @@
 export interface UserInterface {
-  userName: string;
+  username: string;
   hash: string;
   salt: string;
   profileSteps: {
@@ -7,7 +7,7 @@ export interface UserInterface {
   };
 }
 export interface UserPayload {
-  userName: string;
+  username: string;
   password: string;
   basicInfo?: BasicInfoStepInterface | undefined;
 }
@@ -19,7 +19,7 @@ export interface ProfileSteps {
 }
 
 export interface UserResponse {
-  userName: string;
+  username: string;
 }
 
 export enum UserTypes {

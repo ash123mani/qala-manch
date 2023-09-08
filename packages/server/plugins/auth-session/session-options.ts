@@ -4,7 +4,7 @@ import fs from 'fs';
 import '@/utils/load-env';
 
 export const sessionOptions = {
-  sessionName: 'mySession',
+  sessionName: 'session',
   key:  fs.readFileSync(path.join(__dirname, 'secret_key')),
   cookie: {
     maxAge: 60 * 60 * 8, // 8 hours,

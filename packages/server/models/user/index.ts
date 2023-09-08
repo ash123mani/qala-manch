@@ -5,7 +5,7 @@ export type UserType = InferSchemaType<typeof schema>;
 type UserModel = Model<UserInterface>;
 
 const schema = new Schema<UserInterface, UserModel>({
-  userName: {
+  username: {
     type: String,
     required: [ true, 'Please enter your username.'],
     trim: true

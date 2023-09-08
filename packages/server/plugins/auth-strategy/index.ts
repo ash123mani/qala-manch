@@ -8,20 +8,12 @@ import { validatePassword } from '@/utils/auth';
 import { errorDesc } from '@/config/error-desc';
 import { Api404Error } from '@/errors';
 
-
 async function passportStrategy (
   fastify: FastifyInstance, options: FastifyPluginOptions, done: HookHandlerDoneFunction
 ) {
   try {
-
-    fastifyPassport.registerUserSerializer(async (user: any) => user.userName);
-
-    fastifyPassport.registerUserDeserializer(async (userName) => {
-      return await User.findOne({ userName });
-    });
-
-    fastifyPassport.use(new LocalStrategy(async (userName: string, password: string, cb: any) => {
-      const user = await User.findOne({ userName });
+    fastifyPassport.use(new LocalStrategy(async (username, password, cb) => {
+      const user = await User.findOne({ username }, 'username salt hash');
 
       if (!user || !validatePassword(password, user)) {
         return cb(null, false, new Api404Error(undefined, undefined, undefined, errorDesc.login[ 404 ]));

@@ -1,14 +1,13 @@
 import fastifyPassport from '@fastify/passport';
 import { Route } from '@/types';
+import authController from './auth-controller';
 
 const auth: Route[] = [
   {
     method: 'POST',
     url: '/api/auth',
     preValidation: fastifyPassport.authenticate('local'),
-    handler: () => {
-      return 'Logged In';
-    }
+    handler: authController.login
   }
 ];
 
