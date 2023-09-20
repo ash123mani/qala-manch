@@ -11,15 +11,11 @@ async function sessionSerializer (
 ) {
   try {
     fastifyPassport.registerUserSerializer(async (user: UserInterface) => {
-      consola.log('Found User while serializing-0', user);
-      // const foundUser = await User.findOne({ username });
-      // consola.log('Found User while serializing-1', foundUser);
       return user?._id;
     });
 
     fastifyPassport.registerUserDeserializer(async (id) => {
       const user = await User.findById(id);
-      consola.log('Found User while Deserializing', user);
       return user;
     });
 
